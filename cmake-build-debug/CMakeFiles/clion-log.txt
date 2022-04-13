@@ -1,0 +1,15 @@
+C:\Windows\system32\wsl.exe --distribution Ubuntu --exec /bin/bash -c "export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd /mnt/c/Users/idanm/CLionProjects/os_ex2_q1/cmake-build-debug && /usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G 'CodeBlocks - Unix Makefiles' /mnt/c/Users/idanm/CLionProjects/os_ex2_q1"
+-- The C compiler identification is GNU 9.3.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done
+CMake Error at CMakeLists.txt:6 (add_executable):
+  C_STANDARD is set to invalid value '23'
+
+
+-- Generating done
+CMake Generate step failed.  Build files cannot be regenerated correctly.

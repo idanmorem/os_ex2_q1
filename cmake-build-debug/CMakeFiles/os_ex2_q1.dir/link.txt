@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/os_ex2_q1.dir/main.c.o  -o os_ex2_q1 
