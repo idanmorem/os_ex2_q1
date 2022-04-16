@@ -3,4 +3,4 @@ project(os_ex2_q1 C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(os_ex2_q1 main.c)
+add_executable(os_ex2_q1 main.c Q1.c Q1.h)

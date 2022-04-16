@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/os_ex2_q1.dir/Q1.c.o"
   "CMakeFiles/os_ex2_q1.dir/main.c.o"
   "os_ex2_q1"
   "os_ex2_q1.pdb"

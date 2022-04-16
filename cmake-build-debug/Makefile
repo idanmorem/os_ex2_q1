@@ -123,6 +123,33 @@ os_ex2_q1/fast:
 	$(MAKE) -f CMakeFiles/os_ex2_q1.dir/build.make CMakeFiles/os_ex2_q1.dir/build
 .PHONY : os_ex2_q1/fast
 
+Q1.o: Q1.c.o
+
+.PHONY : Q1.o
+
+# target to build an object file
+Q1.c.o:
+	$(MAKE) -f CMakeFiles/os_ex2_q1.dir/build.make CMakeFiles/os_ex2_q1.dir/Q1.c.o
+.PHONY : Q1.c.o
+
+Q1.i: Q1.c.i
+
+.PHONY : Q1.i
+
+# target to preprocess a source file
+Q1.c.i:
+	$(MAKE) -f CMakeFiles/os_ex2_q1.dir/build.make CMakeFiles/os_ex2_q1.dir/Q1.c.i
+.PHONY : Q1.c.i
+
+Q1.s: Q1.c.s
+
+.PHONY : Q1.s
+
+# target to generate assembly for a file
+Q1.c.s:
+	$(MAKE) -f CMakeFiles/os_ex2_q1.dir/build.make CMakeFiles/os_ex2_q1.dir/Q1.c.s
+.PHONY : Q1.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... os_ex2_q1"
+	@echo "... Q1.o"
+	@echo "... Q1.i"
+	@echo "... Q1.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

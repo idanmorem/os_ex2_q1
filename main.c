@@ -1,10 +1,5 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/wait.h>
+#include "Q1.h"
 
-#define EXIT_FAIL 1
 
 int main(int argc, char *argv[]) {
 
@@ -14,8 +9,13 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAIL);
     }
 
-    FILE* temp = fopen("merged.txt", "w");
-    //Will the child continue the loop and create another child?
+    int fd_in = open_file("Temp.txt");
+    close(STDIN_FILENO);
+    close(STDOUT_FILENO);
+    dup(fd_in);
+    dup(fd_in);
+    close(fd_in);
+
     for (int i = 1; i < argc - 1; i++)
     {
         int rc = fork();
@@ -26,30 +26,21 @@ int main(int argc, char *argv[]) {
         }
         else if (rc == 0) // the child's run
         {
-            if (i == 1)
-            {
-                //TODO: redirect the stdin to argv[1]
-                //TODO: redirect the stdout to "temp"
-                char* args[3] = {"merger",  argv[2] ,NULL};
-                execvp(args[0], args);
-            }
-            else
-            {
-                //TODO: redirect the stdin to temp
-                //TODO: redirect the stdout to temp
-                char* args[3] = {"merger", argv[i + 1] ,NULL};
-                execvp(args[0], args);
-            }
+            char* args[3] = {"merger",  argv[i] ,NULL};
+            execve(args[0], args, NULL);
         }
         else
         {
             int rc_wait = wait(NULL);
         }
     }
-    //TODO: redirect stdin to temp
-    //TODO: redirect stdout to merged
+
+    int fd_out = open_file("merged.txt");
+    close(STDOUT_FILENO);
+    dup(fd_out);
+    close(fd_out);
     char* args[3] = {"merger", argv[argc-1], NULL};
-    execvp(args[0], args);
+    execve(args[0], args, NULL);
 
     return 0;
 }

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/idanm/CLionProjects/os_ex2_q1/main.c
+/mnt/c/Users/idanm/CLionProjects/os_ex2_q1/Q1.h
 stdio.h
 -
 unistd.h
@@ -17,4 +17,8 @@ string.h
 -
 sys/wait.h
 -
+
+/mnt/c/Users/idanm/CLionProjects/os_ex2_q1/main.c
+Q1.h
+/mnt/c/Users/idanm/CLionProjects/os_ex2_q1/Q1.h
 
