@@ -1,6 +1,8 @@
 #include "Q1.h"
 
 
+void checkForkSuccess(int rc);
+
 int main(int argc, char *argv[]) {
 
     if (argc < 2)
@@ -8,39 +10,65 @@ int main(int argc, char *argv[]) {
         perror("Not enough arguments!.\n");
         exit(EXIT_FAIL);
     }
-
-    int fd_in = open_file("Temp.txt");
+    /*
+    // TODO: seperate the stdin and stdout to different files (create temporary files)
+    int fdIn = openFile("Temp.txt");
     close(STDIN_FILENO);
     close(STDOUT_FILENO);
-    dup(fd_in);
-    dup(fd_in);
-    close(fd_in);
-
-    for (int i = 1; i < argc - 1; i++)
+    dup(fdIn);
+    dup(fdIn);
+    close(fdIn);
+    */
+    int i = 1;
+    for (i; i < argc - 1; i++)
     {
         int rc = fork();
-        if (rc < 0)
+        checkForkSuccess(rc);
+        if (rc == 0) // the child's run
         {
-            fprintf(stderr, "fork failed\n");
-            exit(EXIT_FAIL);
-        }
-        else if (rc == 0) // the child's run
-        {
+            char srcIn[256];
+            sprintf(srcIn, "%d.txt", i);
+            int tempIn = openFile(strcat("temp", srcIn));
+            close(STDIN_FILENO);
+            dup(tempIn);
+            close(tempIn);
+            char srcOut[256];
+            sprintf(srcOut, "%d.txt", i + 1);
+            int tempOut = openFile(strcat("temp", srcOut));
+            close(STDOUT_FILENO);
+            dup(tempOut);
+            close(tempOut);
             char* args[3] = {"merger",  argv[i] ,NULL};
             execve(args[0], args, NULL);
         }
         else
         {
-            int rc_wait = wait(NULL);
+            pid_t wpid;
+            int status = 0;
+            while ((wpid = wait(&status)) > 0);
         }
     }
 
-    int fd_out = open_file("merged.txt");
+    char srcIn[256];
+    sprintf(srcIn, "%d.txt", i + 1);
+    int fdIn = openFile(strcat("temp", srcIn));
+    close(STDIN_FILENO);
+    dup(fdIn);
+    close(fdIn);
+    int fdOut = openFile("merged.txt");
     close(STDOUT_FILENO);
-    dup(fd_out);
-    close(fd_out);
+    dup(fdOut);
+    close(fdOut);
     char* args[3] = {"merger", argv[argc-1], NULL};
     execve(args[0], args, NULL);
 
     return 0;
+}
+
+void checkForkSuccess(int rc) {
+    if (rc < 0)
+    {
+        fprintf(stderr, "fork failed\n");
+        exit(EXIT_FAIL);
+    }
 }

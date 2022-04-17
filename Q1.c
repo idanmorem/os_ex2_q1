@@ -1,7 +1,7 @@
 #include <fcntl.h>
 #include "Q1.h"
 
-int open_file(char* name)
+int openFile(char* name)
 {
     int fd;
     fd = open(name, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);

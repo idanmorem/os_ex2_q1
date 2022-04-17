@@ -7,6 +7,6 @@
 #include <sys/wait.h>
 
 #define EXIT_FAIL 1
-int open_file(char* name);
+int openFile(char* name);
 
 #endif //OS_EX2_Q1_Q1_H
