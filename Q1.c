@@ -10,6 +10,13 @@ int openFile(char* name)
         fprintf(stderr, "ERROR: open \"%s\" failed (%d). Exiting\n", name, fd);
         exit(2);
     }
-    fprintf(stderr, "opened file %s, file descriptor is: %d\n",name, fd);
     return(fd);
+}
+
+void checkForkSuccess(int rc) {
+    if (rc < 0)
+    {
+        fprintf(stderr, "fork failed\n");
+        exit(EXIT_FAIL);
+    }
 }

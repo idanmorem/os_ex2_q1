@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 
 #define EXIT_FAIL 1
-int openFile(char* name);
 
+int openFile(char* name);
+void checkForkSuccess(int rc);
 #endif //OS_EX2_Q1_Q1_H
