@@ -20,3 +20,14 @@ void checkForkSuccess(int rc) {
         exit(EXIT_FAIL);
     }
 }
+
+void fileRedirect(int fileToClose, int fileToOpen) {
+    close(fileToClose);
+    dup(fileToOpen);
+    close(fileToOpen);
+}
+
+void exitArgs() {
+    perror("Not enough arguments!.\n");
+    exit(EXIT_FAIL);
+}

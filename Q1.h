@@ -8,6 +8,9 @@
 
 #define EXIT_FAIL 1
 
+void fileRedirect(int fileToClose, int fileToOpen);
 int openFile(char* name);
 void checkForkSuccess(int rc);
+void exitArgs();
+
 #endif //OS_EX2_Q1_Q1_H
